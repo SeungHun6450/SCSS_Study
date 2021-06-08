@@ -1,0 +1,75 @@
+// dist -> main.39afc03c.css 에서 확인
+// package.json 에 parcel-bundler밑에 sass가 추가 설치한 것을 볼 수 있음
+// codepen에서 사용 시 css 옆 톱니바퀴 -> css preprocesser 에서 scss 선택하면 사용 가능
+// scss 의 주석 방법 : 1. // : css코드 변환 시 나타나지 않음 2. /**/ : css코드로 변환되도 그대로 유지되서 변화
+// https://sassmeister.com에서 코드펜보다 쉽게 css로 변환됐는지 확인 가능
+
+
+// 가져오기
+// @import "./sub.scss";
+// @import "./sub";
+@import "./sub", "./main2";
+
+$color: royalblue;
+
+.container {
+  // scss의 중첩
+  h1 {
+    color: $color;
+  }
+}
+
+// 중첩(Nesting)
+.container_nesting {
+  ul {
+    li {
+      font-size: 40px;
+      .name {
+        color: royalblue;
+      }
+      .age {
+        color: orange;
+      }
+    }
+  }
+}
+
+// & - 자신이 포함된 영역의 상위 선택자 참조, &가 상위 선택자로 치환이 된다
+.btn {
+  position: absolute;
+  &.active {  // .btn.active
+    color: red;
+  }
+}
+.list {
+  li {
+    &.last-child {  // .list li:last-child
+      margin-right: 0;
+    }
+  }
+}
+.fs{
+  &-small { font-size: 12px; }    // .fs-small
+  &-medium  { font-size: 14px; }  // .fs-medium
+  &-large { font-size: 16px; }    // .fs-large
+}
+
+
+// 중첩된 속성
+.box {
+  font: { // 네임 스페이스가 동일 : 이름을 통해 구분 가능한 범위를 만들어 내는것, 일종의 유효범위를 지정하는 방법
+    weight: bold;         // font-weight: bold;
+    size: 10px;           // font-size: 10px; 
+    family: sans-serif;   // font-family: sans-serif;
+  };
+  margin: { // 네임 스페이스가 동일
+    top: 10px;            // margin-top: 10px;
+    left: 20px;           // margin-left: 20px;
+  };
+  padding: { // 네임 스페이스가 동일
+    top: 10px;            // padding-top : 10px;
+    bottom: 40px;         // padding-bottom: 40px;
+    left: 20px;           // padding-left: 20px;
+    right: 30px;          // padding-right: 30px;
+  };
+}

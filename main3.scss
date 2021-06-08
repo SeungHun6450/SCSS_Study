@@ -1,0 +1,37 @@
+// 재활용(Mixin)
+// 선언은 @mixin 이름, 호출은 @include 이름
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  @include center;
+  .iten {
+    @include center;
+  }
+}
+.box {
+  @include center;
+}
+
+// 인수 : 기존의 mixin에서 값을 변경하고 싶을 때 사용
+// @mixin 이름(매개변수), 사용 시 @include 이름(인수)
+// 매개변수에는 기본 값을 선언할 수 있다. 매개변수만 작성해도 된다
+// 매개변수가 여러개일 경우 인수를 순서에 맞춰 정확하게 명시해줘야 한다.
+// 키워드 인수 : 여러개의 매개변수일 때 직접 키워드를 명시하여 사용한다.
+@mixin box($size: 100px, $color: tomato) {
+  width: $size;
+  height: $size;
+  background-color: $color;
+}
+.container {
+  @include box(200px, black);
+  .iten {
+    // 키워드 인수
+    @include box($color: royalblue); 
+  }
+}
+.box {
+  @include box;
+}

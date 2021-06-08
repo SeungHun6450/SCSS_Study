@@ -1,0 +1,63 @@
+// 변수(Variables)
+
+// 전역 변수
+$size: 100px;
+
+.contianer {
+  position: fixed;
+  top: $size;
+  .item {
+    width: $size;
+    height: $size;
+    transform: translateX($size);
+  }
+}
+
+
+
+// 유효범위
+.contianer {
+  $size: 100px;
+  position: fixed;
+  top: $size;
+  .item { 
+    $size: 200px; // 재할당 가능
+    width: $size;
+    height: $size;
+    transform: translateX($size);
+  }
+  left: $size; // ★재할당 된 값으로 출력
+}
+
+.box {
+  width: $size; // error
+}
+
+
+
+// 산술연산, ★단위 통일은 기본
+div {
+  $size: 20px;
+  width: 20px + 20px; // 40px
+  height: 40px - 10px;  // 30px
+  font-size: 10px * 2;  // 20px
+  // margin: 30px / 2; // 30px/2 그대로 출력
+  // 나누기 방법 3가지
+  // 1. () 사용
+  margin-top: (30px / 2);
+  // 2. 변수 사용
+  margin-bottom: $size / 2;
+  // 3. 다른 산술 연산자와 같이 사용, 단 사칙연산 법칙 고려하여 사용
+  margin-right: 10px + 12px / 2;
+  // 단위가 다른데 계산을 하고 싶으면 calc를 사용
+  margin-left: calc(100% - 200px);
+  padding: 20px % 7;  // 6px
+}
+.span {
+  font-size: 10px;
+  line-height: 10px;
+  font-family: serif;
+  // / 사용은 단축속성
+  // 앞은 font-size 가운데는 line-height 마지막은 font-family
+  font: 10px / 10px serif; 
+}
