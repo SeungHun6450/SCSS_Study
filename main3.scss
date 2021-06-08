@@ -35,3 +35,26 @@
 .box {
   @include box;
 }
+
+
+// 재활용 @content
+@mixin left-top{
+  position: absolute;
+  top: 0;
+  left: 0;
+  @content
+}
+.container {
+  width: 100px;
+  height: 100px;
+  @include left-top;
+}
+.box {
+  width: 200px;
+  height: 300px;
+  @include left-top { // 이 새로운 코드들이 content에 들어간다 
+    bottom: 0;
+    right: 0;
+    margin: auto;
+  }
+}

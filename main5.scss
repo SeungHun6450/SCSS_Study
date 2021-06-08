@@ -1,0 +1,41 @@
+// 데이터
+$number: 1; // .5, 100px, 1em
+$string: bold;  // relative, "../images/a.png"
+$color: red;  // blue, #FFFF00, rgba(0,0,0,.1)
+$boolean: trud; // false
+$null: null;
+$list: orange, royalblue, yellow; // 배열과 유사
+$map: ( // 객체
+  o : orange,
+  r : royalblue,
+  y : yellow
+);
+
+// 반복문
+// js의 경우
+// for (let i=0; i<10; i +=1) {
+//    console.log(`loop-${i}`)
+// }
+// scss는 제로베이스가 아니므로 다음과 같이 사용
+
+// 반복문 @for
+@for $i from 1 through 10 {
+  //nth-child()안에 $i를 넣을 수 없으므로 보간을 사용
+  .box:nth-child(#{$i}) {  // .box:nth-child(1) ~ .box:nth-child(10)
+    width: 100px * $i;  // 100px ~ 1000px
+  }
+}
+
+
+// 반복문 @each
+@each $c in $list {
+  .box {
+    color: $c;
+  }
+}
+
+@each $key, $value in $map {  // map의 경우 key, value형태로 구분하여 사용한다
+  .box-#{$key} {
+    color: $value;
+  }
+}
